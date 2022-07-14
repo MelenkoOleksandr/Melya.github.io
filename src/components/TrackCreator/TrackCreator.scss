@@ -1,0 +1,17 @@
+.creator {
+    width: 100%;
+    margin-top: 50px;
+    position: relative;
+    margin-bottom: 30px;
+    .creator-input {
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: 1px solid gray;
+        font-size: 16px;
+        &::placeholder {
+            font-size: 16px;
+            color: lightgrey;
+        }
+    }
+}
