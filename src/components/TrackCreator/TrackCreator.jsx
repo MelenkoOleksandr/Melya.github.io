@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { addTrack } from "../../reducers/tracks/tracksSlice";
 import "./TrackCreator.scss";
+import { FaPlayCircle } from "react-icons/fa";
 
 const TrackCreator = () => {
     const [trackName, setTrackName] = useState('');
@@ -12,14 +13,24 @@ const TrackCreator = () => {
     }
 
     const handleNewTrack = () => {
-      dispatch(addTrack({id: trackName, trackName}))
+      dispatch(addTrack({id: trackName, trackName, time: 0, isActive: true}))
       setTrackName('')
     }
     
   return (
     <div className="creator">
-      <input placeholder="Enter track name" className='creator-input' type="text" value={trackName} onChange={handleTrackChange} />
-      <button onClick={handleNewTrack}>add</button>
+      
+        <input
+          placeholder="Enter track name"
+          className="creator-input"
+          type="text"
+          value={trackName}
+          onChange={handleTrackChange}
+        />
+        <button className="creator-btn" onClick={handleNewTrack}>
+          <FaPlayCircle />
+        </button>
+      
     </div>
   );
 }

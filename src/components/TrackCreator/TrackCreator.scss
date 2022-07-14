@@ -1,9 +1,9 @@
 .creator {
     width: 100%;
-    margin-top: 50px;
     position: relative;
-    margin-bottom: 30px;
+    margin: 30px 0;
     .creator-input {
+        box-sizing: border-box;
         width: 100%;
         padding: 10px 15px;
         border-radius: 20px;
@@ -12,6 +12,18 @@
         &::placeholder {
             font-size: 16px;
             color: lightgrey;
+        }
+    }
+    .creator-btn {
+        position: absolute;
+        top: 50%;
+        right: 2px;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        svg {
+             font-size: 32px;
+             fill: green;
         }
     }
 }
