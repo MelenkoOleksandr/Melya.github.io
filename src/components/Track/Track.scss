@@ -1,52 +1,49 @@
-@use "../../styles/fonts.scss";
-@use "../../styles/colors.scss";
-@use "../../styles/variables.scss";
-@use "../../styles/mixins.scss";
+@use "../../styles/general.scss";
 
 .track {
   box-sizing: border-box;
-  width: variables.$fullWidth;
+  width: general.$fullWidth;
   list-style: none;
-  @include mixins.flex(center, space-between);
+  @include general.flex(center, space-between);
   padding: 10px;
-  border-bottom: 1px solid colors.$gray;
-  font-weight: fonts.$bold;
+  border-bottom: 1px solid general.$gray;
+  font-weight: general.$bold;
   &:first-child {
-    border-top: 1px solid colors.$gray;
+    border-top: 1px solid general.$gray;
   }
   .track-details {
-    @include mixins.flex;
+    @include general.flex;
     .active {
       margin: 0 10px;
       @extend .svg-btn;
       & > svg {
-        font-size: fonts.$font18;
+        font-size: general.$font18;
       }
     }
     .delete-btn {
       @extend .svg-btn;
       & > svg {
-        font-size: fonts.$font24;
-        fill: colors.$red;
+        font-size: general.$font24;
+        fill: general.$red;
       }
     }
   }
   &.active {
-    background-color: colors.$lightYellow;
-    color: colors.$green;
+    background-color: general.$lightYellow;
+    color: general.$green;
   }
 }
 
-@media screen and (max-width: variables.$desktopBreakpoint) {
+@media screen and (max-width: general.$desktopBreakpoint) {
   .track {
     flex-direction: column;
     padding: 15px;
     .track-name {
-      width: variables.$fullWidth;
+      width: general.$fullWidth;
       margin-bottom: 15px;
     }
     .track-details {
-      width: variables.$fullWidth;
+      width: general.$fullWidth;
     }
   }
 }
