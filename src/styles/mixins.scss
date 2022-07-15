@@ -1,0 +1,13 @@
+
+@mixin flex($align-items: center, $justify-content: center) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+.svg-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    @include flex;
+}

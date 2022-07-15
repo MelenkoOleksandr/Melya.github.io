@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { removeTrack, updateTrack } from "../../reducers/tracks/tracksSlice";
 import { BsPlayCircle, BsPauseCircle } from "react-icons/bs";
 import { BiMinusCircle } from "react-icons/bi";
-import "./Track.scss";
+import { removeTrack, updateTrack } from "../../reducers/tracks/tracksSlice";
 import { parseSecondsToTimeString } from "../../helpers/timeHelper";
+import "./Track.scss";
 
-const Track = ({ id, trackName, time, isActive }) => {
+const Track = React.memo(({ id, trackName, time, isActive }) => {
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -51,14 +51,13 @@ const Track = ({ id, trackName, time, isActive }) => {
       </div>
     </li>
   );
-};
+});
 
 Track.propTypes = {
   id: PropTypes.string,
   trackName: PropTypes.string,
   time: PropTypes.number,
   isActive: PropTypes.bool,
-  prevInteraction: PropTypes.object,
 };
 
 Track.defaultProps = {

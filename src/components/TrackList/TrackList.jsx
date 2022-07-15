@@ -1,7 +1,7 @@
-import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTracks } from "../../reducers/tracks/tracksSlice";
+import { getUpdatedTracksAfterClosing, saveTracksOnClosing } from "../../helpers/trackHelper";
 import Track from "../Track/Track";
 
 const TrackList = () => {
@@ -10,23 +10,14 @@ const TrackList = () => {
 
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem("tracks"));
-
     if (storedTracks) {
-      const modifiedTracks = storedTracks.map( (track) => {
-        if (track.isActive) {
-          const additionalTime = dayjs().diff(track.previousInteraction, "s")
-          return { ...track, time: track.time + additionalTime, previousInteraction: null };
-        } 
-        return track
-      })
+      const modifiedTracks = getUpdatedTracksAfterClosing(storedTracks)
       dispatch(setTracks(modifiedTracks));
     }
   }, []);
 
   useEffect(() => {
-    const closeBrowserTab = window.addEventListener("beforeunload", () => {
-      localStorage.setItem("tracks", JSON.stringify(tracks.map( track => ({...track, previousInteraction: new Date()}))));
-    });
+    const closeBrowserTab = window.addEventListener("beforeunload", () => saveTracksOnClosing(tracks));
 
     return () => {
       window.removeEventListener("beforeunload", closeBrowserTab);
@@ -36,7 +27,7 @@ const TrackList = () => {
   return (
     <ul className="track-list">
       {tracks.map(({ id, trackName, isActive, time }) => (
-        <Track id={id} trackName={trackName} isActive={isActive} time={time} />
+        <Track key={id} id={id} trackName={trackName} isActive={isActive} time={time} />
       ))}
     </ul>
   );

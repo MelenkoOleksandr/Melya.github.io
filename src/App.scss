@@ -1,17 +1,23 @@
-ul {
-    margin-left: 0;
-    padding-left: 0;
-}
+@use "./styles/mixins.scss";
+@use "./styles/variables.scss";
 
 .main {
-    padding-top: 100px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    min-height: 100vh;
-    width: 100%;
+    padding-top: 50px;
+    @include mixins.flex(flex-start);
+    width: variables.$fullWidth;
     .content {
-        width: 100%;
+        @include mixins.flex;
+        flex-direction: column;
+        text-align: center;
+        width: variables.$fullWidth;
         max-width: 560px;
     }
+}
+
+
+
+.track-list {
+     width: variables.$fullWidth;
+    margin-left: 0;
+    padding-left: 0;
 }

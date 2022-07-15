@@ -1,3 +1,5 @@
+import dayjs from "dayjs"
+
 const checkForZero = time => time < 10 ? "0" + time : time
 
 export const parseSecondsToTimeString = seconds => {
@@ -9,3 +11,6 @@ export const parseSecondsToTimeString = seconds => {
 
     return `${checkForZero(hours)}:${checkForZero(minutes)}:${checkForZero(secondsRemain)}`
 }
+
+export const getCurrentDate = () => dayjs().format('DD/MM/YYYY | HH:mm:ss')
+

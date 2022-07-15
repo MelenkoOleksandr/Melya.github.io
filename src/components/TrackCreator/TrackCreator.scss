@@ -1,29 +1,42 @@
+@use "../../styles/fonts.scss";
+@use "../../styles/mixins.scss";
+@use "../../styles/colors.scss";
+@use "../../styles/variables.scss";
+
 .creator {
-    width: 100%;
+    
+    width: variables.$fullWidth;
     position: relative;
     margin: 30px 0;
     .creator-input {
         box-sizing: border-box;
-        width: 100%;
+        width: variables.$fullWidth;
         padding: 10px 15px;
         border-radius: 20px;
-        border: 1px solid gray;
-        font-size: 16px;
+        border: 1px solid colors.$gray;
+        font-size: fonts.$font16;
         &::placeholder {
-            font-size: 16px;
-            color: lightgrey;
+            font-size: fonts.$font16;
+            color: colors.$lightGray;
         }
     }
     .creator-btn {
         position: absolute;
-        top: 50%;
+        top: variables.$halfHeight;
         right: 2px;
-        transform: translateY(-50%);
+        transform: translateY(-(variables.$halfHeight));
         background-color: transparent;
         border: none;
-        svg {
-             font-size: 32px;
-             fill: green;
+        & > svg {
+              font-size: fonts.$font32;
+             fill: colors.$green;
         }
     }
+}
+
+@media screen and (max-width: variables.$desktopBreakpoint) {
+   .creator {
+    @include mixins.flex;
+        width: 80%;
+   }
 }
