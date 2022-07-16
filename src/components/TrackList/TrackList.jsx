@@ -17,10 +17,16 @@ const TrackList = () => {
   }, []);
 
   useEffect(() => {
-    const closeBrowserTab = window.addEventListener("beforeunload", () => saveTracksOnClosing(tracks));
+   
+    const closeBrowserTab = window.addEventListener("visibilitychange", () => {
+      if (document.visibilityState == "hidden") {
+         localStorage.setItem("Save", "saved");
+         saveTracksOnClosing(tracks);
+      }
+    });
 
     return () => {
-      window.removeEventListener("beforeunload", closeBrowserTab);
+      window.removeEventListener("visibilitychange", closeBrowserTab);
     };
   }, [tracks]);
   
